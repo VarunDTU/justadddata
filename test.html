@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Input Fields Form</title>
+  </head>
+  <body>
+    <h1>HTML Input Fields Form</h1>
+
+    <form action="/submit_form" method="post">
+      <label for="name">Text:</label><br />
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Enter your name"
+      /><br /><br />
+
+      <label for="password">Password:</label><br />
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter your password"
+      /><br /><br />
+
+      <label for="email">Email:</label><br />
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter your email"
+      /><br /><br />
+
+      <label for="number">Number:</label><br />
+      <input
+        type="number"
+        id="number"
+        name="number"
+        min="0"
+        max="100"
+        step="1"
+        value="0"
+      /><br /><br />
+
+      <label for="tel">Tel:</label><br />
+      <input
+        type="tel"
+        id="tel"
+        name="tel"
+        placeholder="Enter your phone number"
+      /><br /><br />
+
+      <label for="url">URL:</label><br />
+      <input
+        type="url"
+        id="url"
+        name="url"
+        placeholder="Enter your URL"
+      /><br /><br />
+
+      <label for="date">Date:</label><br />
+      <input type="date" id="date" name="date" /><br /><br />
+
+      <label for="time">Time:</label><br />
+      <input type="time" id="time" name="time" /><br /><br />
+
+      <label for="datetime">Datetime-local:</label><br />
+      <input type="datetime-local" id="datetime" name="datetime" /><br /><br />
+
+      <label for="month">Month:</label><br />
+      <input type="month" id="month" name="month" /><br /><br />
+
+      <label for="week">Week:</label><br />
+      <input type="week" id="week" name="week" /><br /><br />
+
+      <label for="range">Range:</label><br />
+      <input
+        type="range"
+        id="range"
+        name="range"
+        min="0"
+        max="100"
+        value="50"
+      /><br /><br />
+
+      <label for="color">Color:</label><br />
+      <input type="color" id="color" name="color" value="#000000" /><br /><br />
+
+      <label
+        ><input type="checkbox" id="checkbox" name="checkbox" value="on" />
+        Checkbox</label
+      ><br /><br />
+
+      <p>Radio Buttons:</p>
+      <label
+        ><input type="radio" name="radio" value="option1" id="radio1" /> Option
+        1</label
+      >
+      <label
+        ><input type="radio" name="radio" value="option2" id="radio2" /> Option
+        2</label
+      ><br /><br />
+
+      <label for="file">File:</label><br />
+      <input type="file" id="file" name="file" multiple /><br /><br />
+
+      <input type="submit" value="Submit" />
+      <input type="reset" value="Reset" />
+      <input type="button" value="Button" onclick="alert('Button clicked!')" />
+      <br /><br />
+
+      <input type="hidden" id="hidden" name="hidden" value="hidden_value" />
+    </form>
+  </body>
+</html>
