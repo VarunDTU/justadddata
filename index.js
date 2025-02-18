@@ -6,20 +6,31 @@
   const savedInputs = await chrome.storage.local
     .get("savedInputs")
     .then((inputs) => {
-      return JSON.parse(inputs);
+      console.log("inputs", inputs.savedInputs);
+      return inputs.savedInputs;
     })
     .catch((err) => {
       return null;
     });
   console.log("savedInputs", savedInputs);
-  if (!savedInputs && savedInputs != {}) {
+  if (savedInputs == null || savedInputs == {}) {
     document.getElementById("loadSavedFields").disabled = true;
+  } else {
+    document.getElementById("loadSavedFields").disabled = false;
   }
   document.getElementById("generate").addEventListener("click", async () => {
     try {
       const response = await chrome.tabs.sendMessage(tab.id, {
         greeting: "fill-fields",
       });
+    } catch (error) {}
+  });
+  document.getElementById("delete").addEventListener("click", async () => {
+    try {
+      const response = await chrome.tabs.sendMessage(tab.id, {
+        greeting: "delete",
+      });
+      document.getElementById("loadSavedFields").disabled = true;
     } catch (error) {}
   });
   document.getElementById("save").addEventListener("click", async () => {

@@ -99,6 +99,10 @@ async function loadSavedInputs() {
   console.log(input);
 }
 
+function deleteInputFields() {
+  chrome.storage.local.remove("savedInputs");
+}
+
 async function getSavedInputs() {
   const savedInputs = await chrome.storage.local.get("savedInputs");
   console.log("savedInputs", savedInputs);
@@ -125,6 +129,10 @@ chrome.runtime.onMessage.addListener(async function (
   }
   if (request.greeting === "loadSavedFields") {
     loadSavedInputs();
+    sendResponse({ farewell: "goodbye" });
+  }
+  if (request.greeting === "delete") {
+    deleteInputFields();
     sendResponse({ farewell: "goodbye" });
   }
 });
