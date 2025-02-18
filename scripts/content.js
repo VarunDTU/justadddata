@@ -8,6 +8,9 @@ function fillInputFields() {
       case "text":
         input[i].value = getRandomText(10);
         break;
+      case "password":
+        input[i].value = getRandomText(10);
+        break;
       case "email":
         input[i].value = getRandomText(10) + "@example.com";
         break;
@@ -18,7 +21,7 @@ function fillInputFields() {
         input[i].value = currentTime.toISOString().split("T")[0];
         break;
       case "time":
-        input[i].value = currentTime.toLocaleTimeString().slice(0, 5);
+        input[i].value = currentTime.toISOString().slice(11, 16);
 
         break;
       case "datetime-local":
@@ -54,10 +57,8 @@ function fillInputFields() {
       case "color":
         input[i].value = "#000000";
         break;
-      case "submit" || "reset" || "file" || "button" || "hidden":
-        break;
       default:
-        input[i].value = getRandomText(10);
+        break;
     }
   }
 
@@ -68,14 +69,62 @@ function fillInputFields() {
   }
 }
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+function saveInputFields() {
+  let input = document.getElementsByTagName("input");
+  let textarea = document.getElementsByTagName("textarea");
+  input = [...input, ...textarea];
+  const savedInputs = [];
+
+  for (let i = 0; i < input.length; i++) {
+    savedInputs.push({
+      value: input[i].value,
+    });
+  }
+  console.log(savedInputs);
+  chrome.storage.local.set({ savedInputs });
+}
+
+async function loadSavedInputs() {
+  const savedInputs = await getSavedInputs().then(
+    (savedInputs) => savedInputs.savedInputs
+  );
+  let input = document.getElementsByTagName("input");
+  const textarea = document.getElementsByTagName("textarea");
+
+  input = [...input, ...textarea];
+  console.log(savedInputs);
+  for (let i = 0; i < input.length; i++) {
+    input[i].value = savedInputs[i].value;
+  }
+  console.log(input);
+}
+
+async function getSavedInputs() {
+  const savedInputs = await chrome.storage.local.get("savedInputs");
+  console.log("savedInputs", savedInputs);
+  return savedInputs;
+}
+
+chrome.runtime.onMessage.addListener(async function (
+  request,
+  sender,
+  sendResponse
+) {
   console.log(
     sender.tab
       ? "from a content script:" + sender.tab.url
       : "from the extension"
   );
-  if (request.greeting === "hello") {
+  if (request.greeting === "fill-fields") {
     fillInputFields();
+    sendResponse({ farewell: "goodbye" });
+  }
+  if (request.greeting === "save") {
+    saveInputFields();
+    sendResponse({ farewell: "goodbye" });
+  }
+  if (request.greeting === "loadSavedFields") {
+    loadSavedInputs();
     sendResponse({ farewell: "goodbye" });
   }
 });

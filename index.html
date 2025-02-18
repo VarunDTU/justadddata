@@ -9,24 +9,59 @@
         color: #ffffff;
         padding: 10px 20px;
         border-radius: 5px;
+        margin: 5px;
       }
       body {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 150px;
+        width: 300px;
       }
       h1 {
         font-size: 1rem;
         font-weight: bold;
         margin-bottom: 20px;
       }
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 10px;
+        margin: 10px;
+      }
+      .checkbox {
+        width: 15px;
+        height: 15px;
+      }
+      .light-button {
+        background-color: #ffffff;
+
+        color: #000000;
+        padding: 10px 20px;
+        border-radius: 5px;
+      }
+      button[disabled] {
+        background-color: #808080;
+        color: #ffffff;
+      }
     </style>
   </head>
   <body>
     <h1>Fill Input Fields</h1>
-    <button class="button" id="buttonx">Click here to fill</button>
+    <button class="button" id="generate">Fill random fields</button>
+    <button class="button" id="loadSavedFields">Load Saved Fields</button>
+    <div>
+      <button>Delete fields</button>
+      <button class="light-button" id="save">Save fields</button>
+    </div>
+    <footer>
+      &#11088;Star
+      <a href="https://github.com/VarunDTU/justadddata" target="_blank">
+        here
+      </a>
+    </footer>
     <script src="index.js"></script>
   </body>
 </html>

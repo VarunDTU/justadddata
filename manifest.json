@@ -1,7 +1,6 @@
 {
   "name": "JustAddData",
   "description": "Just add form / input data for testing",
-  "short_description": "Adds fake data for form fields testing",
   "version": "1.0",
   "manifest_version": 3,
   "action": {
@@ -14,5 +13,5 @@
       "matches": ["<all_urls>"]
     }
   ],
-  "permissions": ["scripting"]
+  "permissions": ["scripting", "storage"]
 }
